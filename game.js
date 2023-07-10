@@ -23,7 +23,7 @@ let ghostImageLocations = [
 
 // Game variables
 let fps = 30;
-let pacman;
+let jackman;
 let oneBlockSize = 20;
 let score = 0;
 let ghosts = [];
@@ -76,8 +76,8 @@ let randomTargetsForGhosts = [
 //     }
 // }
 
-let createNewPacman = () => {
-    pacman = new Pacman(
+let createNewJackman = () => {
+    jackman = new Jackman(
         oneBlockSize,
         oneBlockSize,
         oneBlockSize,
@@ -93,23 +93,23 @@ let gameLoop = () => {
 
 let gameInterval = setInterval(gameLoop, 1000 / fps);
 
-let restartPacmanAndGhosts = () => {
+let restartJackmanAndGhosts = () => {
     createNewPacman();
     createGhosts();
 };
 
 let onGhostCollision = () => {
     lives--;
-    restartPacmanAndGhosts();
+    restartJackmanAndGhosts();
     if (lives == 0) {
     }
 };
 
 let update = () => {
-    pacman.moveProcess();
-    pacman.eat();
+    jackman.moveProcess();
+    jackman.eat();
     updateGhosts();
-    if (pacman.checkGhostCollision(ghosts)) {
+    if (jackman.checkGhostCollision(ghosts)) {
         onGhostCollision();
     }
 };
@@ -137,7 +137,7 @@ let drawRemainingLives = () => {
 
     for (let i = 0; i < lives; i++) {
         canvasContext.drawImage(
-            pacmanFrames,
+            jackmanFrames,
             2 * oneBlockSize,
             0,
             oneBlockSize,
@@ -166,7 +166,7 @@ let draw = () => {
     drawWalls();
     drawFoods();
     drawGhosts();
-    pacman.draw();
+    jackman.draw();
     drawScore();
     drawRemainingLives();
 };
@@ -234,7 +234,7 @@ let createGhosts = () => {
             10 * oneBlockSize + (i % 2 == 0 ? 0 : 1) * oneBlockSize,
             oneBlockSize,
             oneBlockSize,
-            pacman.speed / 2,
+            jackman.speed / 2,
             ghostImageLocations[i % 4].x,
             ghostImageLocations[i % 4].y,
             124,
@@ -245,7 +245,7 @@ let createGhosts = () => {
     }
 };
 
-createNewPacman();
+createNewJackman();
 createGhosts();
 gameLoop();
 
@@ -254,16 +254,16 @@ window.addEventListener("keydown", (event) => {
     setTimeout(() => {
         if (k == 37 || k == 65) {
             // left arrow or a
-            pacman.nextDirection = DIRECTION_LEFT;
+            jackman.nextDirection = DIRECTION_LEFT;
         } else if (k == 38 || k == 87) {
             // up arrow or w
-            pacman.nextDirection = DIRECTION_UP;
+            jackman.nextDirection = DIRECTION_UP;
         } else if (k == 39 || k == 68) {
             // right arrow or d
-            pacman.nextDirection = DIRECTION_RIGHT;
+            jackman.nextDirection = DIRECTION_RIGHT;
         } else if (k == 40 || k == 83) {
             // bottom arrow or s
-            pacman.nextDirection = DIRECTION_BOTTOM;
+            jackman.nextDirection = DIRECTION_BOTTOM;
         }
     }, 1);
 });
