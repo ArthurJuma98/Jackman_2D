@@ -1,6 +1,6 @@
 const canvas = document.getElementById("canvas");
 const canvasContext = canvas.getContext("2d");
-const pacmanFrames = document.getElementById("animation");
+const jackmanFrames = document.getElementById("animation");
 const ghostFrames = document.getElementById("ghosts");
 
 let createRect = (x, y, width, height, color) => {
@@ -94,7 +94,7 @@ let gameLoop = () => {
 let gameInterval = setInterval(gameLoop, 1000 / fps);
 
 let restartJackmanAndGhosts = () => {
-    createNewPacman();
+    createNewJackman();
     createGhosts();
 };
 
