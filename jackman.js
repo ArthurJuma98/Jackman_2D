@@ -170,3 +170,4 @@ class Jackman {
         canvasContext.restore();
     }
 }
+
