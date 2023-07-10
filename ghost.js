@@ -30,8 +30,8 @@ class Ghost {
     }
 
     isInRange() {
-        let xDistance = Math.abs(pacman.getMapX() - this.getMapX());
-        let yDistance = Math.abs(pacman.getMapY() - this.getMapY());
+        let xDistance = Math.abs(jackman.getMapX() - this.getMapX());
+        let yDistance = Math.abs(jackman.getMapY() - this.getMapY());
         if (
             Math.sqrt(xDistance * xDistance + yDistance * yDistance) <=
             this.range
@@ -49,7 +49,7 @@ class Ghost {
 
     moveProcess() {
         if (this.isInRange()) {
-            this.target = pacman;
+            this.target = jackman;
         } else {
             this.target = randomTargetsForGhosts[this.randomTargetIndex];
         }
